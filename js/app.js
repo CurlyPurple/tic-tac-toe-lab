@@ -56,7 +56,7 @@ function updateMessage() {
     } else if (!winner && tie) {
         messageEl.textContent = "Cat's Game. Maybe Next Time"
     } else {
-        messageEl.textContent = "Winner! Congrats!"
+        messageEl.textContent = `Winner! Congrats ${turn}!`
     }
 }
 
@@ -66,11 +66,29 @@ function handleClick(event) {
         return
     }
     placePiece(squareIndex)
+    //check for winner
+    checkForWinner()
+    //change turn
+    render()
 }
 
 function placePiece(index) {
     board[index] = turn
     console.log(board);
+}
+function checkForWinner() {
+    if (
+        (board[0] !== '' && board[0] === board[1] && board[0] === board[2]) ||
+        (board[3] !== '' && board[3] === board[4] && board[3] === board[5]) ||
+        (board[6] !== '' && board[6] === board[7] && board[6] === board[8]) ||
+        (board[0] !== '' && board[0] === board[3] && board[0] === board[6]) ||
+        (board[1] !== '' && board[1] === board[4] && board[1] === board[7]) ||
+        (board[2] !== '' && board[2] === board[5] && board[2] === board[8]) ||
+        (board[0] !== '' && board[0] === board[4] && board[0] === board[8]) ||
+        (board[2] !== '' && board[2] === board[4] && board[2] === board[6])
+    ) {
+        winner = true
+    }
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
