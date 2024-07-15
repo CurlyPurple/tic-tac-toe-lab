@@ -18,6 +18,8 @@ let board, turn, winner, tie
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
+const resetBtnEl = document.getElementById('reset')
+console.log(resetBtnEl)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -68,7 +70,9 @@ function handleClick(event) {
     placePiece(squareIndex)
     //check for winner
     checkForWinner()
+    checkForTie()
     //change turn
+    switchPlayerTurn()
     render()
 }
 
@@ -91,10 +95,31 @@ function checkForWinner() {
     }
 }
 
+function checkForTie() {
+    if (winner) {
+        return
+    }
+    if (!board.includes('')) {
+        tie = true
+    }
+}
+
+function switchPlayerTurn() {
+    if (winner) {
+        return
+    }
+    if (turn === 'X') {
+        turn = 'O'
+    } else {
+        turn = 'X'
+    }
+}
 /*----------------------------- Event Listeners -----------------------------*/
 squareEls.forEach((squareEl) => {
     squareEl.addEventListener('click', handleClick)
 })
+
+resetBtnEl.addEventListener('click', init)
 
 
 //1) Define the required variables used to track the state of the game.
