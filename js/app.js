@@ -19,7 +19,6 @@ let board, turn, winner, tie
 const squareEls = document.querySelectorAll(".sqr")
 const messageEl = document.querySelector("#message")
 const resetBtnEl = document.getElementById('reset')
-console.log(resetBtnEl)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
